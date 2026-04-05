@@ -1,0 +1,17 @@
+{
+  "name": "pvp",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:client": "npm run dev --workspace @pvp/client",
+    "dev:server": "npm run dev --workspace @pvp/server",
+    "build": "npm run build --workspace @pvp/shared && npm run build --workspace @pvp/server && npm run build --workspace @pvp/client",
+    "typecheck": "npm run typecheck --workspace @pvp/shared && npm run typecheck --workspace @pvp/server && npm run typecheck --workspace @pvp/client"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

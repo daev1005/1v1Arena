@@ -1,0 +1,20 @@
+{
+  "name": "@pvp/client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit"
+  },
+  "dependencies": {
+    "@pvp/shared": "0.1.0",
+    "colyseus.js": "^0.16.15",
+    "phaser": "^3.90.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2",
+    "vite": "^6.3.1"
+  }
+}
