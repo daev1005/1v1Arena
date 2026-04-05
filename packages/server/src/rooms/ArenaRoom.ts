@@ -13,6 +13,7 @@ type AttackMessage = {
 }
 
 export class ArenaRoom extends Room<ArenaState> {
+    private hostSessionId?: string;
     private roundActive = true;
     private readonly roundResetDelayMs = 1200;
     private readonly atkCooldown = GAME_CONFIG.sword.cooldown;
@@ -106,6 +107,18 @@ export class ArenaRoom extends Room<ArenaState> {
                 this.endRound(client.sessionId);
             }
         });
+
+        this.onMessage("match:start", (client: Client) => {
+            if (client.sessionId !== this.hostSessionId) {
+                return;
+            }
+
+            if (this.state.players.size < 2) {
+                return;
+            }
+
+            this.broadcast("match:start", {});
+        });
     }
 
     private endRound(winnerSessionId: string): void {
@@ -139,6 +152,10 @@ export class ArenaRoom extends Room<ArenaState> {
         const player = new Player();
         player.sessionId = client.sessionId;
 
+        if (!this.hostSessionId) {
+            this.hostSessionId = client.sessionId;
+        }
+
         const arenaCenterX = GAME_CONFIG.arena.width / 2;
         const arenaCenterY = GAME_CONFIG.arena.height / 2;
 
@@ -154,6 +171,10 @@ export class ArenaRoom extends Room<ArenaState> {
 
     onLeave(client: Client): void {
         this.state.players.delete(client.sessionId);
+
+        if (client.sessionId === this.hostSessionId) {
+            this.hostSessionId = this.clients[0]?.sessionId;
+        }
     }
 
     private applyKnockback(target: Player, dx: number, dy: number, distance: number): void {

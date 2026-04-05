@@ -3,18 +3,11 @@ import { BootScene } from "./scenes/BootScene";
 import { LobbyScene } from "./scenes/LobbyScene";
 import { HostRoomScene } from "./scenes/HostRoomScene";
 import { ArenaScene } from "./scenes/ArenaScene";
-
-const config: Phaser.Types.Core.GameConfig = {
+const config = {
     type: Phaser.AUTO,
-    render: {
-        antialias: true,
-        roundPixels: true,
-        pixelArt: false
-    },
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
-        autoRound: true,
         width: 1000,
         height: 800
     },
@@ -22,5 +15,4 @@ const config: Phaser.Types.Core.GameConfig = {
     backgroundColor: "#1a1a1a",
     scene: [BootScene, LobbyScene, HostRoomScene, ArenaScene]
 };
-
 new Phaser.Game(config);

@@ -9,9 +9,21 @@ import { ArenaRoom } from "./rooms/ArenaRoom";
 
 const ROOM_NAME = "arena";
 const PORT = Number(process.env.PORT ?? 2567);
+const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN ?? "http://localhost:5173";
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // allow non-browser tools (no origin) + your client domain
+      if (!origin || origin === CLIENT_ORIGIN) {
+        callback(null, true);
+        return;
+      }
+      callback(new Error(`CORS blocked for origin: ${origin}`));
+    }
+  })
+);
 
 app.get("/health", (_req, res) =>  {
     res.json({ok: true, room: ROOM_NAME});
