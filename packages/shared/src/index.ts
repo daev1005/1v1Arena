@@ -1,1 +1,1 @@
-export { GAME_CONFIG } from "./gameConfig";
+export { GAME_CONFIG } from "./gameConfig.js";
