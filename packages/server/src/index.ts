@@ -4,7 +4,7 @@ import { createServer } from "node:http";
 import { Server } from "@colyseus/core";
 import { WebSocketTransport } from "@colyseus/ws-transport";
 import { monitor } from "@colyseus/monitor";
-import { ArenaRoom } from "./rooms/ArenaRoom";
+import { ArenaRoom } from "./rooms/ArenaRoom.js";
 
 
 const ROOM_NAME = "arena";

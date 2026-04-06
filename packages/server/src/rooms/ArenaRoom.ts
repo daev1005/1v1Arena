@@ -1,6 +1,6 @@
 import { Client, Room } from "@colyseus/core";
 import { GAME_CONFIG } from "@pvp/shared";
-import { Player, ArenaState } from "./schema/ArenaState";
+import { Player, ArenaState } from "./schema/ArenaState.js";
 
 type MoveMessage = {
     x: number;
