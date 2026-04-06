@@ -15,7 +15,7 @@ module.exports = {
             env_production: {
                 NODE_ENV: "production",
                 PORT: "2567",
-                CLIENT_ORIGIN: "https://your-client-domain.com"
+                CLIENT_ORIGIN: "https://main.d2o2g054ighqrb.amplifyapp.com/"
             }
         }
     ]
